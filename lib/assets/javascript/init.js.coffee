@@ -25,13 +25,13 @@ window.Initjs =
         App.currentView = window.view = new View()
 
   execFilter: (filterName) ->
-    if App.Common and _.isFunction(App.Common[filterName])
+    if App.Common and typeof App.Common[filterName] == 'function'
       App.Common[filterName]()
 
 jQuery ->
   window.Initjs.initialize()
 
-  unless typeof(Turbolinks) == 'undefined'
+  unless typeof Turbolinks == 'undefined'
     document.addEventListener "page:change", ->
       window.Initjs.initialize()
 
