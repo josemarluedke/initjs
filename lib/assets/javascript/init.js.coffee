@@ -31,7 +31,7 @@ window.Initjs =
 jQuery ->
   window.Initjs.initialize()
 
-  unless _.isUndefined(Turbolinks)
+  unless typeof(Turbolinks) == 'undefined'
     document.addEventListener "page:change", ->
       window.Initjs.initialize()
 
