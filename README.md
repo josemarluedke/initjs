@@ -101,6 +101,11 @@ App = window.App =
 * Add proper unit tests
 
 
+## Thanks
+
+I have thanks to @diogob, that is my inspiration for this gem and thanks for core of code ([gist:2321526](https://gist.github.com/2321526))
+
+
 ## Contributing
 
 1. Fork it
