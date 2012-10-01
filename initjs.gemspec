@@ -8,6 +8,7 @@ Gem::Specification.new do |gem|
   gem.version       = Initjs::VERSION
   gem.authors       = ["Josemar Davi Luedke"]
   gem.email         = ["josemarluedke@gmail.com"]
+  gem.homepage      = "http://github.com/josemarluedke/initjs"
   gem.description   = %q{Init.js is a Ruby Gem that helps run your javascript only in a page that its necessary}
   gem.summary       = %q{Init.js for your Rails application}
   gem.homepage      = ""
