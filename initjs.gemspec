@@ -8,12 +8,14 @@ Gem::Specification.new do |gem|
   gem.version       = Initjs::VERSION
   gem.authors       = ["Josemar Davi Luedke"]
   gem.email         = ["josemarluedke@gmail.com"]
-  gem.description   = %q{Init.js for Rails and Backbone.js}
-  gem.summary       = %q{Init.js}
+  gem.description   = %q{Init.js}
+  gem.summary       = %q{Init.js for your Rails application}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
+
+  gem.add_dependency('rails', '~> 3.1')
 end
