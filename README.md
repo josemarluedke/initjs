@@ -1,6 +1,6 @@
 # Initjs
 
-Init.js is a Ruby Gem that helps run your javascript page only what is necessary.
+Init.js is a Ruby Gem that helps run your javascript only in a page that its necessary.
 
 Along with Rails, you can make a good structure for your javascript.
 A good example is using the Backbone.js, separating each page into a view of the Backbone.js.
