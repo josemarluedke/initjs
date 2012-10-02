@@ -29,6 +29,7 @@ window.Initjs =
       App.Common[filterName]()
 
 jQuery ->
+  window.Initjs.execFilter('initPage') # If you are using the Turbolinks and you need run a code only one time.
   window.Initjs.initialize()
 
   unless window.Turbolinks is undefined
