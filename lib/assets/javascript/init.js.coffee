@@ -33,6 +33,6 @@ jQuery ->
   window.Initjs.initialize()
 
   unless window.Turbolinks is undefined
-    document.addEventListener "page:change", ->
+    $(document).bind "page:change", ->
       window.Initjs.initialize()
 
