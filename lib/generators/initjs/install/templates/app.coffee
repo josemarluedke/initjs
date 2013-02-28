@@ -1,4 +1,7 @@
-App = window.App =
+#= require_self
+#= require_tree .
+
+window.<%= js_app_name %> =
   Common:
     initPage: ->
       # If you're using the Turbolinks and you need run a code only one time, put something here.

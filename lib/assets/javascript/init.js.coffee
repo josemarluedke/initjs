@@ -7,10 +7,16 @@ window.Initjs =
     this.execFilter('init')
     this.exec(controllerClass, controllerName, action)
     this.execFilter('finish')
+    this.appName()
+
+  appName: ->
+    appName = $("#init-js").data('app-name') || "App"
+    window.App = window[appName]
+    if window.App is undefined
+      console.log "Initjs: #{appName} is not defined. Run `rails generate initjs` for generates the app file."
 
   exec: (controllerClass, controllerName, action) ->
     namespace = App
-
     if controllerClass
       railsNamespace = controllerClass.split("::").slice(0, -1)
     else
@@ -25,6 +31,7 @@ window.Initjs =
         App.currentView = window.view = new View()
 
   execFilter: (filterName) ->
+    this.appName()
     if App.Common and typeof App.Common[filterName] == 'function'
       App.Common[filterName]()
 
