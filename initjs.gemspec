@@ -20,4 +20,8 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency('rails', '>= 3.1')
   gem.add_dependency 'jquery-rails'
+
+  gem.add_development_dependency 'rspec-rails', '~> 2.13.0'
+  gem.add_development_dependency 'generator_spec', '~> 0.8.7'
+  gem.add_development_dependency 'sqlite3'
 end
