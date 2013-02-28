@@ -2,17 +2,15 @@
 *.rbc
 .bundle
 .config
-.yardoc
 Gemfile.lock
-InstalledFiles
-_yardoc
-coverage
-doc/
-lib/bundler/man
 pkg
 rdoc
-spec/reports
-test/tmp
-test/version_tmp
-tmp
-spec/tmp
+spec/tmp/app/assets/javascripts/application.js
+spec/tmp/app/assets/javascripts/dummy/
+
+# Ignore the default SQLite database.
+spec/dummy/db/*.sqlite3
+
+# Ignore all logfiles and tempfiles.
+spec/dummy/log/*.log
+spec/dummy/tmp
