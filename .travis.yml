@@ -1,0 +1,14 @@
+rvm:
+  - 1.9.3
+  - 2.0.0
+
+gemfile: "spec/dummy/Gemfile"
+
+env:
+  - DISPLAY=:99.0
+
+before_script:
+  - "cd spec/dummy/spec"
+  - "bundle exec rake db:migrate"
+
+script: "bundle exec rspec spec"
