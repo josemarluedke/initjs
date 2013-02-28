@@ -15,6 +15,10 @@ module Initjs
 
       def create_app_file
         template "app.coffee", "#{application_path}/#{application_name.underscore}.js.coffee"
+
+        # Alerts
+        puts "\n\nInclude the Initjs tag in your application layout (usually found at app/view/layouts/application.html.erb) after the body tag."
+        puts "<%= initjs_tag app_name: '#{application_name}' %>"
       end
     end
   end
