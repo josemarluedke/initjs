@@ -8,7 +8,7 @@ env:
   - DISPLAY=:99.0
 
 before_script:
-  - "cd spec/dummy/spec"
+  - "cd spec/dummy"
   - "bundle exec rake db:migrate"
 
 script: "bundle exec rspec spec"
