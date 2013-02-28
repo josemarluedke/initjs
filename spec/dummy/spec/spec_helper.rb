@@ -38,3 +38,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+TMP_PATH = File.expand_path("../../../tmp", __FILE__)
+DUMMY_PATH = File.expand_path("../../../dummy", __FILE__)
+
+Dir[File.expand_path("../../lib/generators/initjs/**/**_generator.rb")].each {|f| require f}
