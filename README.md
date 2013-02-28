@@ -1,4 +1,4 @@
-# Initjs
+# Initjs [![Build Status](https://travis-ci.org/josemarluedke/initjs.png)](https://travis-ci.org/josemarluedke/initjs)
 
 Init.js is a Ruby Gem that helps run your javascript only in a page that its necessary.
 
