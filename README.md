@@ -1,57 +1,70 @@
 # Initjs [![Build Status](https://travis-ci.org/josemarluedke/initjs.png)](https://travis-ci.org/josemarluedke/initjs) [![Code Climate](https://codeclimate.com/github/josemarluedke/initjs.png)](https://codeclimate.com/github/josemarluedke/initjs) [![Dependency Status](https://gemnasium.com/josemarluedke/initjs.png)](https://gemnasium.com/josemarluedke/initjs) [![Gem Version](https://badge.fury.io/rb/initjs.png)](http://badge.fury.io/rb/initjs)
 
-Init.js is a Ruby Gem that helps run your javascript only in a page that its necessary.
-
-Along with Rails, you can make a good structure for your javascript.
-A good example is using the Backbone.js, separating each page into a view of the Backbone.js.
+Init.js is a Ruby Gem that helps organize your javascript files using Rails' asset pipeline and that provides a simple and automatic way to execute your javascript on a specific page that you need.
 
 Works fine with Turbolinks from Rails.
 
 
 ## Javascript structure example
 
-The structure you need follow is the same of your controller and action.
+The structure you need follow is the same of your controller and actions on a Rails app.
 You can use a namespace too.
 
-### With Backbone.js
+### Simple javascript functions
 
-```javascript
-App.Posts.New = Backbone.View.extend({
-  initialize: function() {
-    // Javascript for the page "posts/new"
-  }
-});
+```coffee
+// app/assets/javascripts/app_name/posts/new.js.coffee
+AppName.Posts = {} if AppName.Posts is undefined
 
-App.Posts.Show = Backbone.View.extend({
-  initialize: function() {
-    // Javascript for the page "posts/1"
-  }
-});
+AppName.Posts.New =->
+  # Javascript for the page "blog/posts/new"
+```
+```coffee
+// app/assets/javascripts/app_name/posts/show.js.coffee
+AppName.Posts = {} if AppName.Posts is undefined
 
-// with namespace
-App.Blog.Posts.Show = Backbone.View.extend({
-  initialize: function() {
-    // Javascript for the page "blog/posts/1"
-  }
-});
+AppName.Posts.Show =->
+  # Javascript for the page "blog/posts/1"
+```
+```coffee
+// app/assets/javascripts/app_name/blog/posts/show.js.coffee
+AppName.Blog = {} if AppName.Blog is undefined
+AppName.Blog.Posts = {} if AppName.Blog.Posts is undefined
+
+AppName.Posts.Show =->
+  # Javascript for the page "blog/posts/1"
 ```
 
-### Without Backbone.js
+### Using Backbone.js
 
-```javascript
-App.Posts.New = function() {
-  // Javascript for the page "posts/new"
-};
+```coffee
+// app/assets/javascripts/app_name/posts/new.js.coffee
+AppName.Posts = {} if AppName.Posts is undefined
 
-App.Posts.Show = function() {
-  // Javascript for the page "posts/1"
-};
-
-// with namespace
-App.Blog.Posts.Show = function() {
-  // Javascript for the page "blog/posts/1"
-};
+AppName.Posts.New = Backbone.View.extend
+  # Javascript for the page "blog/posts/new"
 ```
+```coffee
+// app/assets/javascripts/app_name/posts/show.js.coffee
+AppName.Posts = {} if AppName.Posts is undefined
+
+AppName.Posts.Show = Backbone.View.extend
+  # Javascript for the page "blog/posts/1"
+```
+```coffee
+// app/assets/javascripts/app_name/blog/posts/show.js.coffee
+AppName.Blog = {} if AppName.Blog is undefined
+AppName.Blog.Posts = {} if AppName.Blog.Posts is undefined
+
+AppName.Posts.Show = Backbone.View.extend
+  # Javascript for the page "blog/posts/1"
+```
+
+
+# Requirements
+- Rails 3.1 or higher
+- jQuery (`jquery-rails`)
+- CoffeeScript (`coffee-rails`)
 
 
 ## Installation
@@ -66,10 +79,9 @@ And then execute:
 
 Run the generator:
 
-    rails generate initjs
+    rails generate initjs:install
 
-Add `//= require init.js` to your Javascript manifest file (usually found at `app/assets/javascripts/application.js`).
-
+Make sure initjs generator has injected `//= require init.js` to your Javascript manifest file (usually found at `app/assets/javascripts/application.js`).
 
 
 ## Usage
@@ -77,17 +89,20 @@ Add `//= require init.js` to your Javascript manifest file (usually found at `ap
 Include the Initjs tag in your application layout (usually found at `app/view/layouts/application.html.erb`) after the body tag.
 
 ```erb
-<%= initjs_tag %>
+<%= initjs_tag app_name: "AppName" %>
 ```
 
-### The app.js
+### The app file 
 
-If you have a commom javascript that you need execute every page, you can put in `app/assets/javascripts/app.js.coffee`
+If you have a commom javascript that you need execute every page, you can put in `app/assets/javascripts/app_name/app_name.js.coffee`
 
 #### Structure example
 
 ```coffee
-App = window.App =
+#= require_self
+#= require_tree .
+
+window.AppName =
   Common:
     initPage: ->
       # If you are using the Turbolinks and you need run a code only one time, put something here.
@@ -98,11 +113,86 @@ App = window.App =
       # Something here. This is called in every page, with or without Turbolinks.
 ```
 
+# Recomended directory structure
 
-## Work left to do
+Here is the app folder `app/assets/javascripts/app_name/`.
 
-* Add proper unit tests
+* app_name
+    * [controller]
+        * [action].js.coffee
+        * [other_action].js.coffee
+    * [other_controller]
+        * [action].js
+        * [other_action].js.coffee
+        * [more_action].js.coffee
+    * [namespace]
+        * [controllers]
+            * [action].js.coffee
 
+# Generators
+
+1. Generate a controller folder:
+```
+rails g initjs:add [controllers]
+```
+    **Example:**
+    ```
+    rails g initjs:add posts
+    ```
+
+    **Generates:**
+    * /app_name
+        * /posts
+
+
+2. Generate an action file:
+```
+rails g initjs:add [controllers] [action]
+```
+    **Example:**
+    ```
+    rails g initjs:add posts new
+    ```
+
+    **Generates:**
+    * /app_name
+        * /posts
+            * new.js.coffee
+
+
+3. Generate multiple actions files:
+```
+rails g initjs:add [controllers] [action_1] [action_2] ... [action_n]
+```
+    **Example:**
+    ```
+    rails g initjs:add posts new create edit update
+    ```
+
+    **Generates:**
+    * /app_name
+        * /posts
+            * new.js.coffee
+            * create.js.coffee
+            * edit.js.coffee
+            * update.js.coffee
+
+4. Generate namespaced controller and action:
+```
+rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n]
+```
+
+    **Example:**
+    ```
+    rails g initjs:add blog/posts new
+    ```
+
+    **Generates:**
+    * /app_name
+        * /blog
+            * /posts
+                * new.js.coffee
+                
 
 ## Thanks
 
