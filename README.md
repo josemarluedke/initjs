@@ -1,6 +1,6 @@
 # Initjs [![Build Status](https://travis-ci.org/josemarluedke/initjs.png)](https://travis-ci.org/josemarluedke/initjs) [![Code Climate](https://codeclimate.com/github/josemarluedke/initjs.png)](https://codeclimate.com/github/josemarluedke/initjs) [![Dependency Status](https://gemnasium.com/josemarluedke/initjs.png)](https://gemnasium.com/josemarluedke/initjs) [![Gem Version](https://badge.fury.io/rb/initjs.png)](http://badge.fury.io/rb/initjs)
 
-Init.js is a Ruby Gem that helps organize your javascript files using Rails' asset pipeline and that provides a simple and automatic way to execute your javascript on a specific page that you need.
+Init.js is a RubyGem that helps your organize your javascript files using Rails' asset pipeline. Providing a simple and automatic way to execute your javascript in a specific page.
 
 Works fine with Turbolinks from Rails.
 
@@ -13,59 +13,57 @@ You can use a namespace too.
 ### Simple javascript functions
 
 ```coffee
-// app/assets/javascripts/app_name/posts/new.js.coffee
+# app/assets/javascripts/app_name/posts/new.js.coffee
 AppName.Posts = {} if AppName.Posts is undefined
 
 AppName.Posts.New =->
-  # Javascript for the page "blog/posts/new"
+  # Javascript for the page "posts/new"
 ```
 ```coffee
-// app/assets/javascripts/app_name/posts/show.js.coffee
+# app/assets/javascripts/app_name/posts/show.js.coffee
 AppName.Posts = {} if AppName.Posts is undefined
 
 AppName.Posts.Show =->
-  # Javascript for the page "blog/posts/1"
+  # Javascript for the page "posts/1"
 ```
 ```coffee
-// app/assets/javascripts/app_name/blog/posts/show.js.coffee
+# app/assets/javascripts/app_name/blog/posts/show.js.coffee
 AppName.Blog = {} if AppName.Blog is undefined
 AppName.Blog.Posts = {} if AppName.Blog.Posts is undefined
 
-AppName.Posts.Show =->
+AppName.Blog.Posts.Show =->
   # Javascript for the page "blog/posts/1"
 ```
 
 ### Using Backbone.js
 
 ```coffee
-// app/assets/javascripts/app_name/posts/new.js.coffee
+# app/assets/javascripts/app_name/posts/new.js.coffee
 AppName.Posts = {} if AppName.Posts is undefined
 
 AppName.Posts.New = Backbone.View.extend
-  # Javascript for the page "blog/posts/new"
+  # Javascript for the page "posts/new"
 ```
 ```coffee
-// app/assets/javascripts/app_name/posts/show.js.coffee
+# app/assets/javascripts/app_name/posts/show.js.coffee
 AppName.Posts = {} if AppName.Posts is undefined
 
 AppName.Posts.Show = Backbone.View.extend
-  # Javascript for the page "blog/posts/1"
+  # Javascript for the page "posts/1"
 ```
 ```coffee
-// app/assets/javascripts/app_name/blog/posts/show.js.coffee
+# app/assets/javascripts/app_name/blog/posts/show.js.coffee
 AppName.Blog = {} if AppName.Blog is undefined
 AppName.Blog.Posts = {} if AppName.Blog.Posts is undefined
 
-AppName.Posts.Show = Backbone.View.extend
+AppName.Blog.Posts.Show = Backbone.View.extend
   # Javascript for the page "blog/posts/1"
 ```
-
 
 # Requirements
 - Rails 3.1 or higher
 - jQuery (`jquery-rails`)
 - CoffeeScript (`coffee-rails`)
-
 
 ## Installation
 
@@ -81,7 +79,7 @@ Run the generator:
 
     rails generate initjs:install
 
-Make sure initjs generator has injected `//= require init.js` to your Javascript manifest file (usually found at `app/assets/javascripts/application.js`).
+Make sure initjs generator has injected `//= require app_name/app_name.js` and `//= require init.js` to your Javascript manifest file (usually found at `app/assets/javascripts/application.js`).
 
 
 ## Usage
