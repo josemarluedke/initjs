@@ -204,3 +204,10 @@ I have thanks to @diogob, that is my inspiration for this gem and thanks for cor
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+# License
+
+Copyright (c) 2012-2013 Josemar Davi Luedke
+
+Licensed under the MIT license (see LICENSE.txt file)
