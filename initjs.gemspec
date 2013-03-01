@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Josemar Davi Luedke"]
   gem.email         = ["josemarluedke@gmail.com"]
   gem.homepage      = "http://github.com/josemarluedke/initjs"
-  gem.description   = %q{Init.js is a Ruby Gem that helps run your javascript only in a page that its necessary}
-  gem.summary       = %q{Init.js for your Rails application}
+  gem.description   = %q{Initjs helps your organize your javascript files using Rails' asset pipeline. Providing a simple and automatic way to execute your javascript for a specific page.}
+  gem.summary       = %q{Initjs for your Rails application}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
