@@ -3,13 +3,22 @@
 <head>
   <title>Dummy</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+
+  <%=
+    if params[:turbolinks]
+      javascript_include_tag "application-turbolinks"
+    else
+      javascript_include_tag "application"
+    end
+  %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <%= initjs_tag app_name: "Dummy" %>
 
+  <%= link_to "Home#index", root_path %>
   <%= yield %>
+  <div class="javascript-content"></div>
 
 </body>
 </html>
