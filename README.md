@@ -60,7 +60,7 @@ AppName.Blog.Posts.Show = Backbone.View.extend
   # Javascript for the page "blog/posts/1"
 ```
 
-# Requirements
+## Requirements
 - Rails 3.1 or higher
 - jQuery (`jquery-rails`)
 - CoffeeScript (`coffee-rails`)
@@ -111,7 +111,7 @@ window.AppName =
       # Something here. This is called in every page, with or without Turbolinks.
 ```
 
-# Recomended directory structure
+## Recomended directory structure
 
 Here is the app folder `app/assets/javascripts/app_name/`.
 
@@ -127,7 +127,7 @@ Here is the app folder `app/assets/javascripts/app_name/`.
         * [controllers]
             * [action].js.coffee
 
-# Generators
+## Generators
 
 1. Generate a controller folder:
 ```
@@ -192,10 +192,41 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
                 * new.js.coffee
                 
 
-## Thanks
+## Development environment
 
-I have thanks to @diogob, that is my inspiration for this gem and thanks for core of code ([gist:2321526](https://gist.github.com/2321526))
+You'll need [RVM](https://rvm.io/) to isolate your development environment.
 
+Make sure you install `Ruby 1.9.3` on your [RVM](https://rvm.io/).
+
+Then just checkout the code, configure dependencies and run the tests:
+
+1. Clone the repository:
+
+ `git clone git://github.com/josemarluedke/initjs.git`
+
+2. Enter the repo directory and accept the [RVM](https://rvm.io/):
+
+ `cd initjs`
+
+ `yes` if solicited
+
+3. Install [Bundler](http://gembundler.com/) into our [RVM](https://rvm.io/):
+
+ `gem install bundler`
+
+4. Install all dependencies from [Gemspec](http://docs.rubygems.org/read/chapter/20):
+
+ `bundler install`
+
+### Running tests
+
+1. Go to dummy app folder
+
+	`cd spec/dummy/`
+
+2. Run the rspec
+
+	`rspec spec/`
 
 ## Contributing
 
@@ -205,6 +236,9 @@ I have thanks to @diogob, that is my inspiration for this gem and thanks for cor
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## Thanks
+
+I have thanks to @diogob, that is my inspiration for this gem and thanks for core of code ([gist:2321526](https://gist.github.com/2321526))
 
 # License
 
