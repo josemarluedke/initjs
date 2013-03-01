@@ -1,6 +1,10 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
 
-<%= link_to "Posts#index", posts_index_path %>
-<%= link_to "Posts#new", posts_new_path %>
-<%= link_to "Posts#show", posts_show_path %>
+<%= link_to "Posts#index", posts_path %>
+<%= link_to "Posts#new", new_post_path %>
+<%= link_to "Posts#show", post_path(1) %>
+
+<%= link_to "PostsBlog#index", blog_posts_path %>
+<%= link_to "PostsBlog#new", new_blog_post_path %>
+<%= link_to "PostsBlog#show", blog_post_path(1) %>
