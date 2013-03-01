@@ -4,7 +4,7 @@ module Initjs
   module Generators
     class AddGenerator < ::Rails::Generators::Base
       include Initjs::Generators::ResourceHelpers
-      argument :actions, :type => :array, :required => false
+      argument :actions, type: :array
 
       source_root File.expand_path('../templates', __FILE__)
 
@@ -33,11 +33,10 @@ module Initjs
 
       def create_folders
         if @namespace_name.present?
-          path = "#{application_path}/#{@namespace_name.underscore}"
-          Dir.mkdir(path) unless Dir.exists?(path)
+          create_file "#{application_path}/#{@namespace_name.underscore}/.gitkip"
         end
 
-        Dir.mkdir(file_path) unless Dir.exists?(file_path)
+        create_file "#{file_path}/.gitkip"
       end
 
       def generate_action_files actions
