@@ -10,7 +10,6 @@ Gem::Specification.new do |gem|
   gem.homepage      = "http://github.com/josemarluedke/initjs"
   gem.description   = %q{Initjs helps your organize your javascript files using Rails' asset pipeline. Providing a simple and automatic way to execute your javascript for a specific page.}
   gem.summary       = %q{Initjs for your Rails application}
-  gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
