@@ -10,18 +10,18 @@ describe Initjs::Generators::InstallGenerator do
   end
 
   it "should inject requires for app file and initjs" do
-    destination_root.should have_structure do
+    destination_root.should have_structure {
       directory 'app/assets/javascripts' do
         file 'application.js' do
           contains '//= require dummy/dummy.js'
           contains '//= require init.js'
         end
       end
-    end
+    }
   end
 
   it "should create app file" do
-    destination_root.should have_structure do
+    destination_root.should have_structure {
       directory 'app/assets/javascripts' do
         directory 'dummy' do
           file 'dummy.js.coffee' do
@@ -31,6 +31,6 @@ describe Initjs::Generators::InstallGenerator do
           end
         end
       end
-    end
+    }
   end
 end
