@@ -5,45 +5,46 @@ describe Initjs::Generators::AddGenerator do
   destination TMP_PATH
 
   describe "Creating the controller folder" do
-    arguments ['Posts']
+    arguments ['projects']
 
-    before(:all) do
+    before do
       run_generator
     end
 
     it "should creates the controller folder" do
       destination_root.should have_structure {
         directory 'app/assets/javascripts/dummy' do
-          directory 'posts'
+          directory 'projects'
         end
       }
     end
   end
 
   describe "Creating the controller with actions" do
-    arguments ['Posts', 'index', 'new']
+    arguments ['projects', 'index', 'new']
 
-    before(:all) do
+    before do
       run_generator
     end
 
     it "should creates the controller folder" do
       destination_root.should have_structure {
         directory 'app/assets/javascripts/dummy' do
-          directory 'posts'
+          directory 'projects'
         end
       }
     end
 
     it "should creates the actions files" do
+      run_generator
       destination_root.should have_structure {
-        directory 'app/assets/javascripts/dummy/posts' do
+        directory 'app/assets/javascripts/dummy/projects' do
           file 'index.js.coffee' do
-            contains 'Dummy.Posts.Index ='
+            contains 'Dummy.Projects.Index ='
           end
 
           file 'new.js.coffee' do
-            contains 'Dummy.Posts.New ='
+            contains 'Dummy.Projects.New ='
           end
         end
       }
@@ -56,7 +57,7 @@ describe Initjs::Generators::AddGenerator, "Creating the controller with namespa
   destination TMP_PATH
   arguments ['Blog/Posts']
 
-  before(:all) do
+  before do
     run_generator
   end
 
