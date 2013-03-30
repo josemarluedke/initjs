@@ -16,14 +16,14 @@ You can use a namespace too.
 # app/assets/javascripts/app_name/posts/new.js.coffee
 AppName.Posts = {} if AppName.Posts is undefined
 
-AppName.Posts.New =->
+AppName.Posts.New = ->
   # Javascript for the page "posts/new"
 ```
 ```coffee
 # app/assets/javascripts/app_name/posts/show.js.coffee
 AppName.Posts = {} if AppName.Posts is undefined
 
-AppName.Posts.Show =->
+AppName.Posts.Show = ->
   # Javascript for the page "posts/1"
 ```
 ```coffee
@@ -31,7 +31,7 @@ AppName.Posts.Show =->
 AppName.Blog = {} if AppName.Blog is undefined
 AppName.Blog.Posts = {} if AppName.Blog.Posts is undefined
 
-AppName.Blog.Posts.Show =->
+AppName.Blog.Posts.Show = ->
   # Javascript for the page "blog/posts/1"
 ```
 
