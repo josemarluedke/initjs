@@ -84,10 +84,13 @@ Make sure initjs generator has injected `//= require app_name/app_name.js` and `
 
 ## Usage
 
-Include the Initjs tag in your application layout (usually found at `app/view/layouts/application.html.erb`) after the body tag.
+Include the Initjs tag in your application layout (usually found at `app/view/layouts/application.html.erb`) right after the opening of the body tag.
 
 ```erb
-<%= initjs_tag app_name: "AppName" %>
+	<body>
+		<%= initjs_tag app_name: "AppName" %>
+		…
+	</body>
 ```
 
 ### The app file 
