@@ -13,7 +13,7 @@ window.Initjs =
     appName = $("#init-js").data('app-name') || "App"
     window.App = window[appName]
     if window.App is undefined
-      console.log "Initjs: #{appName} is not defined. Run `rails generate initjs` for generates the app file."
+      console.log "Initjs: #{appName} is not defined. Run `rails generate initjs` to generate the app file."
 
   exec: (controllerClass, controllerName, action) ->
     namespace = App
@@ -36,7 +36,7 @@ window.Initjs =
       App.Common[filterName]()
 
 jQuery ->
-  window.Initjs.execFilter('initPage') # If you are using the Turbolinks and you need run a code only one time.
+  window.Initjs.execFilter('initPage') # If you are using the Turbolinks and you need to run a code only once.
   window.Initjs.initialize()
 
   unless window.Turbolinks is undefined
