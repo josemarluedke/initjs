@@ -14,22 +14,22 @@ You can use a namespace too.
 
 ```coffee
 # app/assets/javascripts/app_name/posts/new.js.coffee
-AppName.Posts = {} if AppName.Posts is undefined
+AppName.Posts ?= {}
 
 AppName.Posts.New = ->
   # Javascript for the page "posts/new"
 ```
 ```coffee
 # app/assets/javascripts/app_name/posts/show.js.coffee
-AppName.Posts = {} if AppName.Posts is undefined
+AppName.Posts ?= {}
 
 AppName.Posts.Show = ->
   # Javascript for the page "posts/1"
 ```
 ```coffee
 # app/assets/javascripts/app_name/blog/posts/show.js.coffee
-AppName.Blog = {} if AppName.Blog is undefined
-AppName.Blog.Posts = {} if AppName.Blog.Posts is undefined
+AppName.Blog ?= {}
+AppName.Blog.Posts ?= {}
 
 AppName.Blog.Posts.Show = ->
   # Javascript for the page "blog/posts/1"
@@ -39,22 +39,22 @@ AppName.Blog.Posts.Show = ->
 
 ```coffee
 # app/assets/javascripts/app_name/posts/new.js.coffee
-AppName.Posts = {} if AppName.Posts is undefined
+AppName.Posts ?= {}
 
 AppName.Posts.New = Backbone.View.extend
   # Javascript for the page "posts/new"
 ```
 ```coffee
 # app/assets/javascripts/app_name/posts/show.js.coffee
-AppName.Posts = {} if AppName.Posts is undefined
+AppName.Posts ?= {}
 
 AppName.Posts.Show = Backbone.View.extend
   # Javascript for the page "posts/1"
 ```
 ```coffee
 # app/assets/javascripts/app_name/blog/posts/show.js.coffee
-AppName.Blog = {} if AppName.Blog is undefined
-AppName.Blog.Posts = {} if AppName.Blog.Posts is undefined
+AppName.Blog ?= {}
+AppName.Blog.Posts ?= {}
 
 AppName.Blog.Posts.Show = Backbone.View.extend
   # Javascript for the page "blog/posts/1"
