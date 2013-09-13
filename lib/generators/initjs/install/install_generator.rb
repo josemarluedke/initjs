@@ -18,7 +18,7 @@ module Initjs
 
         # Alerts
         puts "\n\nInclude the Initjs tag in your application layout (usually found at app/view/layouts/application.html.erb) after the body tag."
-        puts "<%= initjs_tag app_name: '#{application_name}' %>"
+        puts "<%= initjs_tag '#{application_name}' %>"
       end
     end
   end

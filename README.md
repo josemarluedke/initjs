@@ -88,7 +88,7 @@ Include the Initjs tag in your application layout (usually found at `app/view/la
 
 ```erb
 	<body>
-		<%= initjs_tag app_name: "AppName" %>
+		<%= initjs_tag 'AppName' %>
 		…
 	</body>
 ```
