@@ -14,3 +14,4 @@ spec/dummy/db/*.sqlite3
 # Ignore all logfiles and tempfiles.
 spec/dummy/log/*.log
 spec/dummy/tmp
+spec/dummy/db/schema.rb
