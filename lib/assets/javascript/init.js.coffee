@@ -39,7 +39,7 @@ jQuery ->
   window.Initjs.execFilter('initPage') # If you are using the Turbolinks and you need to run a code only once.
   window.Initjs.initialize()
 
-  unless window.Turbolinks is undefined
+  if window.Turbolinks?
     $(document).bind "page:change", ->
       window.Initjs.initialize()
 
