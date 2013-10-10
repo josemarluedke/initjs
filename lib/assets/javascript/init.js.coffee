@@ -32,7 +32,7 @@ window.Initjs =
 
   execFilter: (filterName) ->
     this.appName()
-    if App.Common and typeof App.Common[filterName] == 'function'
+    if App and App.Common and typeof App.Common[filterName] == 'function'
       App.Common[filterName]()
 
 jQuery ->
