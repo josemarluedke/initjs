@@ -1,4 +1,5 @@
 Dummy.Home ?= {}
 
-Dummy.Home.Index =->
-  $('.javascript-content').html "Home index content"
+Dummy.Home.Index =
+  init: ->
+    $('.javascript-content').html "Home index content"

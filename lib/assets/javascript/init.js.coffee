@@ -28,7 +28,10 @@ window.Initjs =
     if namespace and controllerName
       controller = namespace[controllerName]
       if controller and View = controller[action]
-        App.currentView = window.view = new View()
+        if typeof View is 'function'
+          App.currentView = window.view = new View()
+        else if View is Object(View) and typeof View.init is 'function'
+          App.currentView = window.view = new View.init()
 
   execFilter: (filterName) ->
     this.appName()
