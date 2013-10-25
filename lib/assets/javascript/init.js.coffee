@@ -38,20 +38,21 @@ window.Initjs =
     if typeof view is 'function'
       return new view()
     else if typeof view is 'object'
-      this.initModules(view)
+      @initModules(view)
       return new view.init() if typeof view.init is 'function'
 
-  initModules: (view)->
-    if view.modules?
-      App.currentModules = [] unless App.currentModules?
+  initModules: (obj)->
+    if obj? and obj.modules?
+      @App.currentModules = [] unless @App.currentModules?
 
-      if typeof view.modules is 'function'
-        modules = [].concat(new view.modules())
+      if typeof obj.modules is 'function'
+        modules = [].concat(new obj.modules())
       else
-        modules = [].concat(view.modules)
+        modules = [].concat(obj.modules)
 
       for module in modules
-        App.currentModules.push this.initView(module)
+        @App.currentModules.push @initView(module)
+
   config: (name)->
     @App.configs = { turbolinks: true, pjax: false } unless @App.configs
     return @App.configs[name] if @App.configs and @App.configs[name]
