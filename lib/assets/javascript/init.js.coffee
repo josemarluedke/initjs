@@ -54,6 +54,10 @@ window.Initjs =
 
       for module in modules
         App.currentModules.push this.initView(module)
+  config: (name)->
+    @App.configs = { turbolinks: true, pjax: false } unless @App.configs
+    return @App.configs[name] if @App.configs and @App.configs[name]
+
   execFilter: (name) ->
    @App[name]() if @App and typeof @App[name] == 'function'
 
@@ -62,7 +66,10 @@ jQuery ->
   window.Initjs.execFilter('initPage') # If you are using the Turbolinks and you need to run a code only once.
   window.Initjs.initialize()
 
-  if window.Turbolinks?
-    $(document).bind "page:change", ->
-      window.Initjs.initialize()
+  if window.Turbolinks? and Initjs.config('turbolinks') is true
+    $(document).bind 'page:change', ->
+      Initjs.initialize()
 
+  if $.fn.pjax? and Initjs.config('pjax') is true
+    $(document).bind 'pjax:complete', ->
+      Initjs.initialize()

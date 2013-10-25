@@ -2,6 +2,9 @@
 #= require_tree .
 
 window.<%= js_app_name %> =
+  configs:
+    turbolinks: true # True to use initjs with Turbolinks by default.
+    pjax: false # True to use initjs with pjax by default.
 
   initPage: ->
     # If you're using the Turbolinks or pjax and you need run a code once, put something here.
