@@ -55,6 +55,7 @@ window.Initjs =
         @App.currentModules.push @initView(module)
 
   config: (name)->
+    return false unless @App?
     @App.configs = { turbolinks: true, pjax: false } unless @App.configs
     return @App.configs[name] if @App.configs and @App.configs[name]
 
