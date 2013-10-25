@@ -8,7 +8,6 @@ window.Initjs =
   infos: -> $('#init-js')
 
   appName: (infos)->
-    console.log('find app name')
     appName = infos.data('app-name') || 'App'
     @App = window[appName]
     console.log "Initjs: #{appName} is not defined. Run `rails generate initjs` to generate the app file." unless @App?
