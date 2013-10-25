@@ -13,3 +13,5 @@ window.<%= js_app_name %> =
   init: ->
     # Something here. This is called in every page.
 
+  modules: -> []
+    # Some modules that will be used on every page.
