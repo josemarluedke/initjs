@@ -194,6 +194,41 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
             * /posts
                 * new.js.coffee
                 
+## Changelog
+
+### 1.0.1
+
+- Remove the the necessity of pass app_name on initjs_tag
+- Change from `=->` to `= ->` on generators
+- Fix some typos
+- Use `?= {}` instead of `if` statement
+- Change  `if` statement for Trubolinks
+- Others minor fixes
+
+### 1.0.0
+
+- Add supprot for application name
+- Add 'install' generator
+- Add 'add' generator
+- Improve the specs
+
+### 0.1.3
+
+- Add Rails 4 compatibility
+
+### 0.1.2
+
+- Solve bug on IE in addEventListener
+
+### 0.1.1
+
+- Add initPage support for work better with Turbolinks
+
+### 0.1.0
+
+- First release
+
+
 
 ## Development environment
 
