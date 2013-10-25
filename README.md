@@ -285,7 +285,7 @@ Then just checkout the code, configure dependencies and run the tests:
 
 ## Thanks
 
-I have thanks to @diogob, that is my inspiration for this gem and thanks for core of code ([gist:2321526](https://gist.github.com/2321526))
+I have thanks to @diogob, that is my inspiration for this gem and thanks for core of code ([gist:2321526](https://gist.github.com/diogob/2321526/326c848e29406743c67fd040d4237ffe7ebcc6cd))
 
 # License
 
