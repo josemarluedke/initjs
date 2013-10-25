@@ -291,4 +291,4 @@ I have thanks to @diogob, that is my inspiration for this gem and thanks for cor
 
 Copyright (c) 2012-2013 Josemar Davi Luedke
 
-Licensed under the MIT license (see LICENSE.txt file)
+Licensed under the [MIT license](LICENSE).
