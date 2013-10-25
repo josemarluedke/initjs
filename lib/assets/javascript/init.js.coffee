@@ -17,21 +17,43 @@ window.Initjs =
 
   exec: (controllerClass, controllerName, action) ->
     namespace = App
+    this.initModules(App)
+
     if controllerClass
       railsNamespace = controllerClass.split("::").slice(0, -1)
     else
       railsNamespace = []
 
     for name in railsNamespace
-      namespace = namespace[name] if namespace
+      if namespace
+        namespace = namespace[name]
+        console.log namespace
+        this.initModules(namespace)
 
     if namespace and controllerName
       controller = namespace[controllerName]
-      if controller and View = controller[action]
-        if typeof View is 'function'
-          App.currentView = window.view = new View()
-        else if View is Object(View) and typeof View.init is 'function'
-          App.currentView = window.view = new View.init()
+      this.initModules(controller) if controller?
+      App.currentView = this.initView(View) if controller and View = controller[action]
+
+
+  initView: (view)->
+    if typeof view is 'function'
+      return new view()
+    else if typeof view is 'object'
+      this.initModules(view)
+      return new view.init() if typeof view.init is 'function'
+
+  initModules: (view)->
+    if view.modules?
+      App.currentModules = [] unless App.currentModules?
+
+      if typeof view.modules is 'function'
+        modules = [].concat(new view.modules())
+      else
+        modules = [].concat(view.modules)
+
+      for module in modules
+        App.currentModules.push this.initView(module)
 
   execFilter: (filterName) ->
     this.appName()
