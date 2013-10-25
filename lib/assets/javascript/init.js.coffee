@@ -14,25 +14,27 @@ window.Initjs =
     console.log "Initjs: #{appName} is not defined. Run `rails generate initjs` to generate the app file." unless @App?
 
   exec: (controllerClass, controllerName, action) ->
-    namespace = App
-    this.initModules(App)
+    @initModules(@App)
+    namespace = @namespace(controllerClass)
+
+    if namespace and controllerName
+      controller = namespace[controllerName]
+      @initModules(controller)
+      @App.currentView = @initView(View) if controller and View = controller[action]
+
+  namespace: (controllerClass)->
+    namespace = @App
 
     if controllerClass
-      railsNamespace = controllerClass.split("::").slice(0, -1)
+      railsNamespace = controllerClass.split('::').slice(0, -1)
     else
       railsNamespace = []
 
     for name in railsNamespace
       if namespace
         namespace = namespace[name]
-        console.log namespace
-        this.initModules(namespace)
-
-    if namespace and controllerName
-      controller = namespace[controllerName]
-      this.initModules(controller) if controller?
-      App.currentView = this.initView(View) if controller and View = controller[action]
-
+        @initModules(namespace)
+    return namespace
 
   initView: (view)->
     if typeof view is 'function'
