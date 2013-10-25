@@ -196,6 +196,15 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
                 
 ## Changelog
 
+### 2.0.0 (Unreleased)
+
+- Add support for objects instead of only fuctions
+- Add support for modules
+- Add support for configurations
+- Add support for pjax
+- Remove the default namespace Common on app file
+- Lots of refactoring and improvements
+
 ### 1.0.1
 
 - Remove the the necessity of pass app_name on initjs_tag
