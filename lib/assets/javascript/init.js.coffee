@@ -1,19 +1,17 @@
 window.Initjs =
   initialize: ->
-    infos = $("#init-js")
-    controllerClass = infos.data("controller-class")
-    controllerName = infos.data("controller-name")
-    action = infos.data("action")
-    this.execFilter('init')
-    this.exec(controllerClass, controllerName, action)
-    this.execFilter('finish')
-    this.appName()
+    infos = @infos()
+    @appName(infos) unless @App
+    @execFilter('init')
+    @exec(infos.data('controller-class'), infos.data('controller-name'), infos.data('action'))
 
-  appName: ->
-    appName = $("#init-js").data('app-name') || "App"
-    window.App = window[appName]
-    if window.App is undefined
-      console.log "Initjs: #{appName} is not defined. Run `rails generate initjs` to generate the app file."
+  infos: -> $('#init-js')
+
+  appName: (infos)->
+    console.log('find app name')
+    appName = infos.data('app-name') || 'App'
+    @App = window[appName]
+    console.log "Initjs: #{appName} is not defined. Run `rails generate initjs` to generate the app file." unless @App?
 
   exec: (controllerClass, controllerName, action) ->
     namespace = App
@@ -61,10 +59,13 @@ window.Initjs =
   execFilter: (name) ->
    @App[name]() if @App and typeof @App[name] == 'function'
 
+  initApp: ->
+    @appName(@infos())
+    Initjs.execFilter('initPage')
+    @initialize()
 
 jQuery ->
-  window.Initjs.execFilter('initPage') # If you are using the Turbolinks and you need to run a code only once.
-  window.Initjs.initialize()
+  Initjs.initApp()
 
   if window.Turbolinks? and Initjs.config('turbolinks') is true
     $(document).bind 'page:change', ->
