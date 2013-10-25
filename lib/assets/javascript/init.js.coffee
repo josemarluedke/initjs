@@ -54,11 +54,9 @@ window.Initjs =
 
       for module in modules
         App.currentModules.push this.initView(module)
+  execFilter: (name) ->
+   @App[name]() if @App and typeof @App[name] == 'function'
 
-  execFilter: (filterName) ->
-    this.appName()
-    if App and App.Common and typeof App.Common[filterName] == 'function'
-      App.Common[filterName]()
 
 jQuery ->
   window.Initjs.execFilter('initPage') # If you are using the Turbolinks and you need to run a code only once.
