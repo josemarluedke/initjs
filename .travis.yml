@@ -9,6 +9,5 @@ env:
 before_script:
   - "sh -e /etc/init.d/xvfb start"
   - "cd spec/dummy"
-  - "bundle exec rake db:migrate"
 
 script: "bundle exec rspec spec"
