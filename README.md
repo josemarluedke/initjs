@@ -267,13 +267,9 @@ Then just checkout the code, configure dependencies and run the tests:
 
 ### Running tests
 
-1. Go to dummy app folder
+1. Run the rspec
 
-	`cd spec/dummy/`
-
-2. Run the rspec
-
-	`rspec spec/`
+	`rspec spec`
 
 ## Contributing
 
