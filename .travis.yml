@@ -8,6 +8,5 @@ env:
 
 before_script:
   - "sh -e /etc/init.d/xvfb start"
-  - "cd spec/dummy"
 
 script: "bundle exec rspec spec"
