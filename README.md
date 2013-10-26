@@ -231,7 +231,7 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
 
 ### 0.1.1
 
-- Add initPage support for work better with Turbolinks
+- Add initPage support to work better with Turbolinks
 
 ### 0.1.0
 
