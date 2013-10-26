@@ -1,12 +1,14 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path("../../spec/dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
 require 'generator_spec/test_case'
 require 'capybara/rails'
 require 'capybara/rspec'
+
+Dir[File.expand_path("lib/generators/initjs/**/**_generator.rb")].each {|f| require f}
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -27,7 +29,5 @@ RSpec.configure do |config|
   config.order = "random"
 end
 
-TMP_PATH = File.expand_path("../../../tmp", __FILE__)
-DUMMY_PATH = File.expand_path("../../../dummy", __FILE__)
-
-Dir[File.expand_path("../../lib/generators/initjs/**/**_generator.rb")].each {|f| require f}
+TMP_PATH = File.expand_path("../dummy/tmp", __FILE__)
+DUMMY_PATH = File.expand_path("../dummy", __FILE__)

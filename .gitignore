@@ -5,11 +5,8 @@
 Gemfile.lock
 pkg
 rdoc
-spec/tmp/app/assets/javascripts/application.js
-spec/tmp/app/assets/javascripts/dummy/
-
-# Ignore the default SQLite database.
-spec/dummy/db/*.sqlite3
+spec/dummy/tmp/app/assets/javascripts/application.js
+spec/dummy/tmp/app/assets/javascripts/dummy/
 
 # Ignore all logfiles and tempfiles.
 spec/dummy/log/*.log
