@@ -204,6 +204,7 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
 - Add support for pjax
 - Remove the default namespace Common on app file
 - Lots of refactoring and improvements
+- Add support to initialize inside a partial (pjax friendly)
 
 ### 1.0.1
 
