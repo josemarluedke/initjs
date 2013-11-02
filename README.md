@@ -245,7 +245,7 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
 
 ### 1.0.0
 
-- Add supprot for application name
+- Add support for application name
 - Add 'install' generator
 - Add 'add' generator
 - Improve the specs
