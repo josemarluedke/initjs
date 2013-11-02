@@ -10,7 +10,38 @@ Works fine with Turbolinks from Rails.
 The structure you need follow is the same of your controller and actions on a Rails app.
 You can use a namespace too.
 
-### Simple javascript functions
+### Simple javascript objects
+
+```coffee
+# app/assets/javascripts/app_name/posts/new.js.coffee
+AppName.Posts ?= {}
+
+AppName.Posts.New =
+  init: ->
+    # Javascript for the page "posts/new"
+  modules: -> []
+```
+```coffee
+# app/assets/javascripts/app_name/posts/show.js.coffee
+AppName.Posts ?= {}
+
+AppName.Posts.Show =
+  init: ->
+    # Javascript for the page "posts/1"
+   modules: -> []
+```
+```coffee
+# app/assets/javascripts/app_name/blog/posts/show.js.coffee
+AppName.Blog ?= {}
+AppName.Blog.Posts ?= {}
+
+AppName.Blog.Posts.Show =
+  init: ->
+    # Javascript for the page "blog/posts/1"
+   modules: -> []
+```
+
+Also you can use just a function, if you'll not use modules.
 
 ```coffee
 # app/assets/javascripts/app_name/posts/new.js.coffee
@@ -19,21 +50,6 @@ AppName.Posts ?= {}
 AppName.Posts.New = ->
   # Javascript for the page "posts/new"
 ```
-```coffee
-# app/assets/javascripts/app_name/posts/show.js.coffee
-AppName.Posts ?= {}
-
-AppName.Posts.Show = ->
-  # Javascript for the page "posts/1"
-```
-```coffee
-# app/assets/javascripts/app_name/blog/posts/show.js.coffee
-AppName.Blog ?= {}
-AppName.Blog.Posts ?= {}
-
-AppName.Blog.Posts.Show = ->
-  # Javascript for the page "blog/posts/1"
-```
 
 ### Using Backbone.js
 
@@ -41,23 +57,29 @@ AppName.Blog.Posts.Show = ->
 # app/assets/javascripts/app_name/posts/new.js.coffee
 AppName.Posts ?= {}
 
-AppName.Posts.New = Backbone.View.extend
-  # Javascript for the page "posts/new"
+AppName.Posts.New =
+  init: Backbone.View.extend
+    # Javascript for the page "posts/new"
+   modules: -> []
 ```
 ```coffee
 # app/assets/javascripts/app_name/posts/show.js.coffee
 AppName.Posts ?= {}
 
-AppName.Posts.Show = Backbone.View.extend
-  # Javascript for the page "posts/1"
+AppName.Posts.Show =
+  init: Backbone.View.extend
+    # Javascript for the page "posts/1"
+   modules: -> []
 ```
 ```coffee
 # app/assets/javascripts/app_name/blog/posts/show.js.coffee
 AppName.Blog ?= {}
 AppName.Blog.Posts ?= {}
 
-AppName.Blog.Posts.Show = Backbone.View.extend
-  # Javascript for the page "blog/posts/1"
+AppName.Blog.Posts.Show =
+  init: Backbone.View.extend
+    # Javascript for the page "blog/posts/1"
+   modules: -> []
 ```
 
 ## Requirements
@@ -97,21 +119,26 @@ Include the Initjs tag in your application layout (usually found at `app/view/la
 
 If you have a commom javascript that you need execute every page, you can put in `app/assets/javascripts/app_name/app_name.js.coffee`
 
-#### Structure example
+### Modules
+
+TODO
+
+### Partials
+
+TODO
+
+### Structure example
 
 ```coffee
 #= require_self
 #= require_tree .
 
 window.AppName =
-  Common:
-    initPage: ->
-      # If you are using the Turbolinks and you need run a code only one time, put something here.
-      # if you're not using the turbolinks, there's no difference between init and initPage.
-    init: ->
-      # Something here. This is called in every page, with or without Turbolinks.
-    finish: ->
-      # Something here. This is called in every page, with or without Turbolinks.
+  initPage: ->
+    # If you are using the Turbolinks and you need run a code only one time, put something here.
+    # if you're not using the turbolinks, there's no difference between init and initPage.
+  init: ->
+    # Something here. This is called in every page, with or without Turbolinks.
 ```
 
 ## Recomended directory structure
@@ -202,9 +229,10 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
 - Add support for modules
 - Add support for configurations
 - Add support for pjax
-- Remove the default namespace Common on app file
-- Lots of refactoring and improvements
 - Add support to initialize inside a partial (pjax friendly)
+- Remove the default namespace Common on app file
+- Remove the finish filter
+- Lots of refactoring and improvements
 
 ### 1.0.1
 
