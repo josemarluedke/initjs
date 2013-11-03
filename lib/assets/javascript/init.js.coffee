@@ -29,7 +29,14 @@ window.Initjs =
     if namespace and controllerName
       controller = namespace[controllerName]
       @initModules(controller) unless @partial is true
-      @App.currentView = @initView(View) if controller and View = controller[action]
+      if controller and View = controller[action]
+        @App.currentView = @initView(View)
+      else if controller and @config('respond_with')
+        actions = []
+        actions.push k for k of @config('respond_with')
+
+        if $.inArray(action, actions) != -1 and View = controller[@config('respond_with')[action]]
+          @App.currentView = @initView(View)
 
     @partial = false
 
@@ -68,7 +75,7 @@ window.Initjs =
 
   config: (name)->
     return false unless @App?
-    @App.configs = { turbolinks: true, pjax: false } unless @App.configs
+    @App.configs = { turbolinks: true, pjax: false, respond_with: { 'Create': 'New', 'Update': 'Edit' } } unless @App.configs
     return @App.configs[name] if @App.configs and @App.configs[name]
 
   execFilter: (name) ->

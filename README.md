@@ -134,6 +134,13 @@ TODO
 #= require_tree .
 
 window.AppName =
+  configs:
+    turbolinks: true # True to use initjs with Turbolinks by default.
+    pjax: false # True to use initjs with pjax by default.
+    respond_with: # To not use respond_with, just set false.
+      'Create': 'New' # Respond the Create action with the New.
+      'Update': 'Edit' # Respond the Update action with the Edit.
+
   initPage: ->
     # If you are using the Turbolinks and you need run a code only one time, put something here.
     # if you're not using the turbolinks, there's no difference between init and initPage.
@@ -230,6 +237,7 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
 - Add support for configurations
 - Add support for pjax
 - Add support to initialize inside a partial (pjax friendly)
+- Add support for respond_with
 - Remove the default namespace Common on app file
 - Remove the finish filter
 - Lots of refactoring and improvements
@@ -238,7 +246,6 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
 
 - Remove the the necessity of pass app_name on initjs_tag
 - Change from `=->` to `= ->` on generators
-- Fix some typos
 - Use `?= {}` instead of `if` statement
 - Change  `if` statement for Trubolinks
 - Others minor fixes
