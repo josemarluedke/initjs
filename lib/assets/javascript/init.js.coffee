@@ -5,7 +5,7 @@ window.Initjs =
 
     @appName($infos) unless @App
     @execFilter('init')
-    @exec($infos.data('controller-class'), $infos.data('controller-name'), $infos.data('action'))
+    @exec($infos.data('resource').split('/'), $infos.data('action'))
 
   initializePartial: ->
     $infos = @$partialInfos()
@@ -18,17 +18,19 @@ window.Initjs =
   partial: false
 
   appName: ($infos)->
-    appName = $infos.data('app-name') || 'App'
-    @App = window[appName]
-    console.log "Initjs: #{appName} is not defined. Run `rails generate initjs` to generate the app file." unless @App?
+    app_name = $infos.data('app-name') || 'App'
+    @App = window[app_name]
+    console.log "Initjs: #{app_name} is not defined. Run `rails generate initjs:install` to generate the app file." unless @App?
 
-  exec: (controllerClass, controllerName, action) ->
+  exec: (resources, action) ->
     @initModules(@App) unless @partial is true
-    namespace = @namespace(controllerClass)
+    controller_name = resources.pop()
+    namespace = @namespace(resources)
 
-    if namespace and controllerName
-      controller = namespace[controllerName]
+    if namespace and controller_name
+      controller = namespace[controller_name]
       @initModules(controller) unless @partial is true
+
       if controller and View = controller[action]
         @App.currentView = @initView(View)
       else if controller and @config('respond_with')
@@ -40,15 +42,10 @@ window.Initjs =
 
     @partial = false
 
-  namespace: (controllerClass)->
+  namespace: (resources)->
     namespace = @App
 
-    if controllerClass
-      railsNamespace = controllerClass.split('::').slice(0, -1)
-    else
-      railsNamespace = []
-
-    for name in railsNamespace
+    for name in resources
       if namespace
         namespace = namespace[name]
         @initModules(namespace) unless @partial is true

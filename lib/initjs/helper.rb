@@ -9,8 +9,7 @@ module Initjs
       end
 
       content_tag 'div', '', { id: id,
-                               :"data-controller-class" => controller.class.name,
-                               :"data-controller-name" => controller.controller_name.camelize,
+                               :"data-resource" => controller.controller_path.split('/').map(&:camelize).join('/'),
                                :"data-action" => controller.action_name.camelize,
                                :"data-app-name" => options[:app_name] || "App"}
     end
