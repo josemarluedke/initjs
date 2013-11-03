@@ -1,19 +1,17 @@
-# Initjs [![Build Status](https://travis-ci.org/josemarluedke/initjs.png)](https://travis-ci.org/josemarluedke/initjs) [![Code Climate](https://codeclimate.com/github/josemarluedke/initjs.png)](https://codeclimate.com/github/josemarluedke/initjs) [![Dependency Status](https://gemnasium.com/josemarluedke/initjs.png)](https://gemnasium.com/josemarluedke/initjs) [![Gem Version](https://badge.fury.io/rb/initjs.png)](http://badge.fury.io/rb/initjs)
+# Initjs[![Build Status](https://travis-ci.org/josemarluedke/initjs.png)](https://travis-ci.org/josemarluedke/initjs) [![Code Climate](https://codeclimate.com/github/josemarluedke/initjs.png)](https://codeclimate.com/github/josemarluedke/initjs) [![Dependency Status](https://gemnasium.com/josemarluedke/initjs.png)](https://gemnasium.com/josemarluedke/initjs) [![Gem Version](https://badge.fury.io/rb/initjs.png)](http://badge.fury.io/rb/initjs)
 
 Initjs is a RubyGem that helps your organize your javascript files using Rails' asset pipeline. Providing a simple and automatic way to execute your javascript for a specific page.
 
-Works fine with Turbolinks from Rails.
+Works fine with Turbolinks from Rails and pjax.
 
 
 ## Javascript structure example
 
-The structure you need follow is the same of your controller and actions on a Rails app.
-You can use a namespace too.
+The structure you need follow is the same of your controller and actions on your Rails application.
 
-### Simple javascript objects
+### Simple objects
 
 ```coffee
-# app/assets/javascripts/app_name/posts/new.js.coffee
 AppName.Posts ?= {}
 
 AppName.Posts.New =
@@ -22,7 +20,6 @@ AppName.Posts.New =
   modules: -> []
 ```
 ```coffee
-# app/assets/javascripts/app_name/posts/show.js.coffee
 AppName.Posts ?= {}
 
 AppName.Posts.Show =
@@ -30,8 +27,10 @@ AppName.Posts.Show =
     # Javascript for the page "posts/1"
    modules: -> []
 ```
+
+We support namespaces too:
+
 ```coffee
-# app/assets/javascripts/app_name/blog/posts/show.js.coffee
 AppName.Blog ?= {}
 AppName.Blog.Posts ?= {}
 
@@ -44,7 +43,6 @@ AppName.Blog.Posts.Show =
 Also you can use just a function, if you'll not use modules.
 
 ```coffee
-# app/assets/javascripts/app_name/posts/new.js.coffee
 AppName.Posts ?= {}
 
 AppName.Posts.New = ->
@@ -54,31 +52,11 @@ AppName.Posts.New = ->
 ### Using Backbone.js
 
 ```coffee
-# app/assets/javascripts/app_name/posts/new.js.coffee
 AppName.Posts ?= {}
 
 AppName.Posts.New =
   init: Backbone.View.extend
     # Javascript for the page "posts/new"
-   modules: -> []
-```
-```coffee
-# app/assets/javascripts/app_name/posts/show.js.coffee
-AppName.Posts ?= {}
-
-AppName.Posts.Show =
-  init: Backbone.View.extend
-    # Javascript for the page "posts/1"
-   modules: -> []
-```
-```coffee
-# app/assets/javascripts/app_name/blog/posts/show.js.coffee
-AppName.Blog ?= {}
-AppName.Blog.Posts ?= {}
-
-AppName.Blog.Posts.Show =
-  init: Backbone.View.extend
-    # Javascript for the page "blog/posts/1"
    modules: -> []
 ```
 
@@ -101,12 +79,12 @@ Run the generator:
 
     rails generate initjs:install
 
-Make sure initjs generator has injected `//= require app_name/app_name.js` and `//= require init.js` to your Javascript manifest file (usually found at `app/assets/javascripts/application.js`).
+Make sure initjs generator has injected `//= require app_name/app_name.js` and `//= require init.js` to your Javascript manifest file (usually in `app/assets/javascripts/application.js`).
 
 
 ## Usage
 
-Include the Initjs tag in your application layout (usually found at `app/view/layouts/application.html.erb`) right after the opening of the body tag.
+Include the Initjs tag in your application layout (usually in `app/view/layouts/application.html.erb`) right after the opening of the body tag.
 
 ```erb
 <body>
@@ -115,9 +93,7 @@ Include the Initjs tag in your application layout (usually found at `app/view/la
 </body>
 ```
 
-### The app file 
-
-If you have a commom javascript that you need execute every page, you can put in `app/assets/javascripts/app_name/app_name.js.coffee`
+Why this tag? This tag will add the informations about the controller and action that is been executed.
 
 ### Modules
 
@@ -127,7 +103,10 @@ TODO
 
 TODO
 
-### Structure example
+### The app file
+
+The app file is the main file for your application, you can set some configurations and put some common code that you need to run on each page. This app file is usually in `app/assets/javascripts/app_name/app_name.js.coffee`. See the default file below:
+
 
 ```coffee
 #= require_self
