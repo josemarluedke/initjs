@@ -256,9 +256,7 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
 
 ## Development environment
 
-You'll need [RVM](https://rvm.io/) to isolate your development environment.
-
-Make sure you install `Ruby 1.9.3` on your [RVM](https://rvm.io/).
+Make sure you install `Ruby 2.0.0`.
 
 Then just checkout the code, configure dependencies and run the tests:
 
@@ -266,13 +264,11 @@ Then just checkout the code, configure dependencies and run the tests:
 
  `git clone git://github.com/josemarluedke/initjs.git`
 
-2. Enter the repo directory and accept the [RVM](https://rvm.io/):
+2. Enter the repo directory.
 
  `cd initjs`
 
- `yes` if solicited
-
-3. Install [Bundler](http://gembundler.com/) into our [RVM](https://rvm.io/):
+3. Install [Bundler](http://gembundler.com/).
 
  `gem install bundler`
 
@@ -284,7 +280,7 @@ Then just checkout the code, configure dependencies and run the tests:
 
 1. Run the rspec
 
-	`rspec spec`
+	`rake spec`
 
 ## Contributing
 
