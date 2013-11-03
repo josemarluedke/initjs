@@ -1,8 +1,6 @@
 rvm:
   - 2.0.0
 
-gemfile: "spec/dummy/Gemfile"
-
 env:
   - DISPLAY=:99.0
 
