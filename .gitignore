@@ -2,7 +2,6 @@
 *.rbc
 .bundle
 .config
-Gemfile.lock
 pkg
 rdoc
 spec/dummy/tmp/app/assets/javascripts/application.js

@@ -2,7 +2,7 @@
 
 Initjs is a RubyGem that helps your organize your javascript files using Rails' asset pipeline. Providing a simple and automatic way to execute your javascript for a specific page.
 
-Works fine with Turbolinks from Rails and pjax.
+Works fine with Turbolinks and pjax.
 
 
 ## Javascript structure example
