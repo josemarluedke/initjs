@@ -1,4 +1,4 @@
-# Initjs[![Build Status](https://travis-ci.org/josemarluedke/initjs.png)](https://travis-ci.org/josemarluedke/initjs) [![Code Climate](https://codeclimate.com/github/josemarluedke/initjs.png)](https://codeclimate.com/github/josemarluedke/initjs) [![Dependency Status](https://gemnasium.com/josemarluedke/initjs.png)](https://gemnasium.com/josemarluedke/initjs) [![Gem Version](https://badge.fury.io/rb/initjs.png)](http://badge.fury.io/rb/initjs)
+# Initjs [![Build Status](https://travis-ci.org/josemarluedke/initjs.png)](https://travis-ci.org/josemarluedke/initjs) [![Code Climate](https://codeclimate.com/github/josemarluedke/initjs.png)](https://codeclimate.com/github/josemarluedke/initjs) [![Dependency Status](https://gemnasium.com/josemarluedke/initjs.png)](https://gemnasium.com/josemarluedke/initjs) [![Gem Version](https://badge.fury.io/rb/initjs.png)](http://badge.fury.io/rb/initjs)
 
 Initjs is a RubyGem that helps your organize your javascript files using Rails' asset pipeline. Providing a simple and automatic way to execute your javascript for a specific page.
 
@@ -95,13 +95,6 @@ Include the Initjs tag in your application layout (usually in `app/view/layouts/
 
 Why this tag? This tag will add the informations about the controller and action that is been executed.
 
-### Modules
-
-TODO
-
-### Partials
-
-TODO
 
 ### The app file
 
@@ -126,6 +119,93 @@ window.AppName =
   init: ->
     # Something here. This is called in every page, with or without Turbolinks.
 ```
+
+### Modules
+
+How about code that we need over and over again? Initjs was a solution for that: Modules!
+
+Modules are the solution to not repeat the same code in more than one place. We just create a function with the code that we need in more than one place and on the page we need use it, we just say it.
+
+#### Examples
+
+```coffee
+AppName.Tabs = ->
+  $('.tabs a').click ->
+    # do something when the link is clicked
+```
+
+```coffee
+AppName.Posts.Show =
+  init:
+
+  modules: -> [AppName.Tabs]
+```
+
+This `AppName.Tabs` will be automatically called when you access `/posts/1` for example.
+
+
+You also can declare modules for controller, namespaces and for all the app:
+
+```coffee
+AppName.Posts.modules = -> [AppName.Tabs]
+```
+
+This say to use the `AppName.Tabs` module on all pages that is on `posts` controller.
+
+
+To declare modules for all the app, you can do it at the app file:
+
+```coffee
+window.AppName =
+  initPage: ->
+    # ...
+
+  # ...
+
+  modules: -> [AppName.Tabs]
+```
+
+### Partials
+
+Something we need execute a javascript for a `html` that will be rendered from a request by ajax/pjax and then execute the javascript. Initjs give you support for that.
+
+You will need add on your 'partial' the `initjs_tag` and say that is a partial:
+
+```erb
+<%= initjs_tag app_name: 'AppName', partial: true %>
+```
+
+Now you will need call the Initjs initialize for the partial. Let's say we are using pjax for request the 'partial'.
+
+```coffee
+$('.pjax-content').on 'pjax:complete', ->
+  Initjs.initializePartial()
+```
+
+Then Initjs will execute the javascript for that 'partial'.
+
+**Important:** Modules for controller, namespace and the application will be not initialized on partials, only modules for the specific view. The `init` function on the app file will be called on partials.
+
+
+### Respond with
+
+Let's say we have a `form` for edit a record with validations on the back-end side. My action is `edit` and the javascript is write for that action. When I submit this form and I get an error, the action that is executing is `update` and not `edit` anymore. So Initjs should call the `Update` right? Right! But I need the same javascript that is for `edit` action to be executed on `update` and I should be able to do it without repeating the code. Since Initjs 2.0.0 we have this feature by default.
+
+On the app file we have a configuration that say the default action that will be executed.
+
+```coffee
+window.AppName =
+  configs:
+	# ...
+    respond_with:
+      'Create': 'New' # Respond the Create action with the New.
+      'Update': 'Edit' # Respond the Update action with the Edit.
+```
+
+You can add more action for change it if you need.
+
+Also you can disable this feature if ypu don't need it, just set `false` to `respond_with` variable.
+
 
 ## Recomended directory structure
 
