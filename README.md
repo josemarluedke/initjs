@@ -124,7 +124,7 @@ window.AppName =
 
 How about code that we need over and over again? Initjs was a solution for that: Modules!
 
-Modules are the solution to not repeat the same code in more than one place. We just create a function with the code that we need in more than one place and on the page we need use it, we just say it.
+Modules is the solution to not repeat the same code in more than one place. We just create a function with the code that we need in more than one place and then in the view we need use it, we just say it.
 
 #### Examples
 
@@ -144,16 +144,24 @@ AppName.Posts.Show =
 This `AppName.Tabs` will be automatically called when you access `/posts/1` for example.
 
 
-You also can declare modules for controller, namespaces and for all the app:
+You also can declare modules for controller, namespaces and for the app, and even modules:
 
 ```coffee
 AppName.Posts.modules = -> [AppName.Tabs]
 ```
 
-This say to use the `AppName.Tabs` module on all pages that is on `posts` controller.
+This is saying to use the `AppName.Tabs` module on all pages that is on `posts` controller.
+
+```coffee
+AppName.Tabs =
+  init: ->
+    $('.tabs a').click ->
+      # do something when the link is clicked
+   modules: -> [AppName.SomeOtherModule]
+```
 
 
-To declare modules for all the app, you can do it at the app file:
+To declare modules for entire the app, you can do it on the app file:
 
 ```coffee
 window.AppName =
@@ -167,7 +175,7 @@ window.AppName =
 
 ### Partials
 
-Something we need execute a javascript for a `html` that will be rendered from a request by ajax/pjax and then execute the javascript. Initjs give you support for that.
+Sometimes we need execute a javascript for html that will be rendered from a request using ajax/pjax and then execute the javascript. Initjs give you support for that.
 
 You will need add on your 'partial' the `initjs_tag` and say that is a partial:
 
@@ -175,7 +183,7 @@ You will need add on your 'partial' the `initjs_tag` and say that is a partial:
 <%= initjs_tag app_name: 'AppName', partial: true %>
 ```
 
-Now you will need call the Initjs initialize for the partial. Let's say we are using pjax for request the 'partial'.
+Then you'll need call the Initjs initialize for the partial. Let's say we are using pjax to request the 'partial'.
 
 ```coffee
 $('.pjax-content').on 'pjax:complete', ->
@@ -184,14 +192,14 @@ $('.pjax-content').on 'pjax:complete', ->
 
 Then Initjs will execute the javascript for that 'partial'.
 
-**Important:** Modules for controller, namespace and the application will be not initialized on partials, only modules for the specific view. The `init` function on the app file will be called on partials.
+**Important:** Modules in controller, namespace and in the application will not be initialized on partials, only modules in the specific view. The `init` function on the app file will be called on partials.
 
 
 ### Respond with
 
-Let's say we have a `form` for edit a record with validations on the back-end side. My action is `edit` and the javascript is write for that action. When I submit this form and I get an error, the action that is executing is `update` and not `edit` anymore. So Initjs should call the `Update` right? Right! But I need the same javascript that is for `edit` action to be executed on `update` and I should be able to do it without repeating the code. Since Initjs 2.0.0 we have this feature by default.
+Let's say we have a `form` for edit a post with validations on the back-end side. My action is `edit` and the javascript is write for that action. When I submit this form and get an error, the action that is executing is `update` and not `edit` anymore. So Initjs should call the `Posts.Update` right? Right! But I need the same code that `Posts.Edit` uses to be executed on `Posts.Update` and I should be able to do it without repeating the code. Since Initjs 2.0.0 we have this feature by default.
 
-On the app file we have a configuration that say the default action that will be executed.
+On the app file we have a configuration saying the default action that will be executed.
 
 ```coffee
 window.AppName =
@@ -202,7 +210,7 @@ window.AppName =
       'Update': 'Edit' # Respond the Update action with the Edit.
 ```
 
-You can add more action for change it if you need.
+You can change these actions or add more if you need.
 
 Also you can disable this feature if ypu don't need it, just set `false` to `respond_with` variable.
 
