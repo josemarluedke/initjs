@@ -298,7 +298,7 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
                 
 ## Changelog
 
-### 2.0.0 (Unreleased)
+### 2.0.0
 
 - Add support for objects instead of only fuctions
 - Add support for modules

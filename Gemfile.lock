@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    initjs (1.0.1)
+    initjs (2.0.0.beta1)
       jquery-rails
       rails (>= 3.1)
 
