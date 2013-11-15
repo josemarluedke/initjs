@@ -5,7 +5,8 @@ window.Initjs =
 
     @appName($infos) unless @App
     @execFilter('init')
-    @exec($infos.data('resource').split('/'), $infos.data('action'))
+    resource = $infos.data('resource').split('/') if $infos.data('resource')
+    @exec(resource, $infos.data('action'))
 
   initializePartial: ->
     $infos = @$partialInfos()
@@ -24,6 +25,7 @@ window.Initjs =
 
   exec: (resources, action) ->
     @initModules(@App) unless @partial is true
+    return unless resources
     controller_name = resources.pop()
     namespace = @namespace(resources)
 
