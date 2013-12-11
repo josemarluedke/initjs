@@ -1,6 +1,6 @@
 # Initjs [![Build Status](https://travis-ci.org/josemarluedke/initjs.png)](https://travis-ci.org/josemarluedke/initjs) [![Code Climate](https://codeclimate.com/github/josemarluedke/initjs.png)](https://codeclimate.com/github/josemarluedke/initjs) [![Dependency Status](https://gemnasium.com/josemarluedke/initjs.png)](https://gemnasium.com/josemarluedke/initjs) [![Gem Version](https://badge.fury.io/rb/initjs.png)](http://badge.fury.io/rb/initjs)
 
-Initjs is a RubyGem that helps your organize your javascript files using Rails' asset pipeline. Providing a simple and automatic way to execute your javascript for a specific page.
+Initjs helps you organize your javascript to play nice with Rails' asset pipeline. Providing a simple and automatic way to execute your javascript into a specific page.
 
 Works fine with Turbolinks and pjax.
 
