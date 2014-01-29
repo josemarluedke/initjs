@@ -83,7 +83,7 @@ window.Initjs =
   initApp: ->
     @appName(@$infos())
     Initjs.execFilter('initPage')
-    @initialize()
+    @initialize() if !window.Turbolinks? || !Initjs.config('turbolinks') is true
 
 jQuery ->
   Initjs.initApp()
