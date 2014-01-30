@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    initjs (2.0.0)
+    initjs (2.1.0)
       jquery-rails
       rails (>= 3.1)
 
@@ -138,6 +138,5 @@ DEPENDENCIES
   coffee-rails
   generator_spec (~> 0.9.0)
   initjs!
-  jquery-rails
   rspec-rails (~> 2.14.0)
   turbolinks
