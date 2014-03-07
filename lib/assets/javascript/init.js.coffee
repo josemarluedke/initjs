@@ -10,6 +10,7 @@ window.Initjs =
 
   initializePartial: ->
     $infos = @$partialInfos()
+    @$partialInfos().remove()
     if $infos.length > 0
       @partial = true
       @initialize($infos)
