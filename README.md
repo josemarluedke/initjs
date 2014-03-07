@@ -298,6 +298,9 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
                 
 ## Changelog
 
+### 2.1.1
+- Fix InitPartial with multiple partials.
+
 ### 2.1.0
 - Fix duplicated initialization with Turbolinks 2.x (It will break your app if you are using Turbolinks 1.x)
 
