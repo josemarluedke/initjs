@@ -93,6 +93,9 @@ jQuery ->
     $(document).bind 'page:change', ->
       Initjs.initialize()
 
+    if navigator.userAgent.match(/MSIE 8.0/)
+      Initjs.initialize()
+
   if $.fn.pjax? and Initjs.config('pjax') is true
     $(document).bind 'pjax:complete', ->
       Initjs.initialize()
