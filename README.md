@@ -298,6 +298,9 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
                 
 ## Changelog
 
+### 2.1.2
+- Fix initialization when using IE8 and Turbolinks
+
 ### 2.1.1
 - Fix InitPartial with multiple partials.
 
