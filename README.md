@@ -394,6 +394,6 @@ I have thanks to @diogob, that is my inspiration for this gem and thanks for cor
 
 # License
 
-Copyright (c) 2012-2013 Josemar Davi Luedke
+Copyright (c) 2012-2014 Josemar Luedke
 
 Licensed under the [MIT license](LICENSE).
