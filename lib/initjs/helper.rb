@@ -2,11 +2,7 @@ module Initjs
   module Helper
     def initjs_tag options = {}
       options = { app_name: options } unless options.is_a?(Hash)
-      if options[:partial] && options[:partial] == true
-        id = 'init-partial-js'
-      else
-        id = 'init-js'
-      end
+      id = options[:partial] && options[:partial] == true ? 'init-partial-js': 'init-js'
 
       content_tag 'div', '', { id: id,
                                :"data-resource" => controller.controller_path.split('/').map(&:camelize).join('/'),

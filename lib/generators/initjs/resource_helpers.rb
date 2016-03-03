@@ -7,11 +7,7 @@ module Initjs
       end
 
       def application_name
-        if defined?(Rails) && Rails.application
-          Rails.application.class.name.split('::').first
-        else
-          "App"
-        end
+        defined?(Rails) && Rails.application ? Rails.application.class.name.split('::').first : "App"
       end
 
       def js_app_name
