@@ -93,6 +93,10 @@ jQuery ->
     $(document).bind 'page:change', ->
       Initjs.initialize()
 
+    # Support Turbolinks 5
+    $(document).bind 'turbolinks:load', ->
+      Initjs.initialize()
+
     if navigator.userAgent.match(/MSIE 8.0/)
       Initjs.initialize()
 
