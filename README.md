@@ -295,8 +295,11 @@ rails g initjs:add [namespace]/[controllers] [action_1] [action_2] ... [action_n
         * /blog
             * /posts
                 * new.js.coffee
-                
+
 ## Changelog
+
+### 2.2.0
+- Added support to Turbolinks 5 #13
 
 ### 2.1.2
 - Fix initialization when using IE8 and Turbolinks
