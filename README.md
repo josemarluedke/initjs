@@ -212,7 +212,7 @@ window.AppName =
 
 You can change these actions or add more if you need.
 
-Also you can disable this feature if ypu don't need it, just set `false` to `respond_with` variable.
+Also you can disable this feature if you don't need it, just set `false` to `respond_with` variable.
 
 **Important:** Initjs will take a look to see if is there a function for the view first of executing the respond_with, if so, it will initialize the view and not the respond_with configured action.
 
